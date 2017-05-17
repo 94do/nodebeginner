@@ -2,12 +2,13 @@
  * Created by Think on 2017/4/17.
  */
 var http = require('http');
-function start() {
+var url = require('url');
+function start(route, handle) {
     function onRequest (request, response){
-        console.log("Request received.");
-        response.writeHead(200, {"Content-Type":"text/plain"});
-        response.write("Hello World my node.js study");
-        response.end();
+        var path = url.parse(request.url).pathname;
+        console.log("~~~~~~~~~~~~~~~~~Request for" + path);
+
+         route(path, handle, response );
     }
     http.createServer(onRequest).listen(8181);
     console.log("Server has started.");
