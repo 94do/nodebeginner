@@ -5,8 +5,10 @@ var server = require('./server');
 var router =  require('./router');
 var requestHandlers = require('./requestHandlers');
 
-var handle = {};
-handle['/'] = requestHandlers.start;
-handle['/start'] = requestHandlers.start;
-handle['/upload'] = requestHandlers.upload;
-server.start(router.route, handle);
+var routeUrl = {};
+routeUrl['/'] = requestHandlers.start;
+routeUrl['/start'] = requestHandlers.start;
+routeUrl['/upload'] = requestHandlers.upload;
+routeUrl['/show'] = requestHandlers.show;
+console.log("index.js");
+server.begin(router.route, routeUrl);
